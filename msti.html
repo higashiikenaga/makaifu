@@ -64,15 +64,18 @@
   <h1>🧬 魔界府式MSTI診断</h1>
   <p>MSTI = Makai Succubus Type Indicator<br>あなたの中に眠る“魔性”のタイプを分析♡</p>
 
-  <div class="quiz-box" id="quiz">
-    <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
-    <div class="question" id="question"></div>
-    <div id="answers"></div>
-  </div>
+  <button id="start-btn" onclick="startQuiz()">診断を始める</button>
+<div class="quiz-box" id="quiz" style="display:none">
+  <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+  <div class="question" id="question"></div>
+  <div id="answers"></div>
+</div>
 
   <div id="result"></div>
 
   <script>
+
+    
     const quizData = [
       { q: "相手にされて嬉しいのは？", a: ["甘やかされる", "頼られる"], type: ["S", "I"] },
       { q: "あなたの魔力タイプは？", a: ["癒し", "挑発"], type: ["I", "S"] },
@@ -104,6 +107,12 @@
     let index = 0;
     let counts = { S: 0, I: 0, A: 0, B: 0, P: 0, D: 0 };
 
+    function startQuiz() {
+  document.getElementById("start-btn").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+  showQuestion();
+}
+    
     function showQuestion() {
       const q = quizData[index];
       document.getElementById("question").textContent = q.q;
