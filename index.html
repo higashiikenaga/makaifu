@@ -13,6 +13,12 @@
       padding: 0;
       overflow-x: hidden;
     }
+    body.ready .intro {
+      display: none;
+    }
+    body:not(.ready) .content {
+      display: none;
+    }
     header {
       background-color: #3c134c;
       padding: 1.5rem;
@@ -101,6 +107,13 @@
     }
   </style>
 </head>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.body.classList.add('ready');
+      }, 5000); // 5秒後にアニメーション終了
+    });
+  </script>
 <body>
   <div class="intro">
     <img src="ririsu.png" alt="リリス" class="character ririsu">
