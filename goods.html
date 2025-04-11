@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>魔界府公式ホームページ｜恋のキューピットはサキュバスさん！？＆Re+M+Magic!広報ページ</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #1a0e1a;
+      color: #f8eaff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    body.ready .intro {
+      display: none;
+    }
+    body:not(.ready) .content {
+      display: none;
+    }
+    header {
+      background-color: #3c134c;
+      padding: 1.5rem;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s ease 3s forwards;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+    nav {
+      background-color: #2a0a36;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+    nav a {
+      color: #ffccff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+    footer {
+      background-color: #3c134c;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.8rem;
+    }
+    .intro {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #0e0612;
+    }
+    .character {
+      position: absolute;
+      max-height: 80vh;
+      opacity: 0;
+    }
+    .ririsu {
+      left: 5%;
+      animation: slideInLeft 1s ease 0.5s forwards;
+    }
+    .rei {
+      right: 5%;
+      animation: slideInRight 1s ease 1.5s forwards;
+    }
+   .logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 40%;
+      opacity: 0;
+      animation: fadeIn 1s ease 3s forwards;
+    }
+    @keyframes slideInLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (max-width: 768px) {
+      .character {
+        max-height: 50vh;
+      }
+    }
+  </style>
+</head>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.body.classList.add('ready');
+      }, 5000); // 5秒後にアニメーション終了
+    });
+  </script>
+<body>
+  <div class="intro">
+    <img src="ririsu.png" alt="リリス" class="character ririsu">
+    <img src="rei.png" alt="玲" class="character rei">
+    <img src="logo.png" alt="ロゴ" class="logo">
+  </div>
+
+  <header>
+    <h1>魔界府広報ポータルサイト</h1>
+    <p>～『恋のキューピットはサキュバスさん！？』＆『Re+M+Magic!』公式～</p>
+  </header>
+
+  <nav>
+    <a href="https://kakuyomu.jp/works/16818622172681698163">📚 小説を読む</a>
+    <a href="#asmr">🎧 ASMRボイス</a>
+    <a href="https://higashiikenaga.github.io/metro_ic/index.html">💳 Re+M+PASS</a>
+    <a href="goods.html">🛍️ グッズ情報</a>
+    <a href="#about">🧠 リリス様とは？</a>
+  </nav>
+
+  <main>
+      <h2>ようこそ、魔界へ……♡</h2>
+      <p>このサイトは、恋に不器用なサキュバス「リリス・ナイトメア」様と、<br>
+      美少女男の娘「天川玲」くんによる魔界広報プロジェクトです。</p>
+      <p>現在、癒しのASMR音声や、NFC連動カード「Re+M+PASS」などを展開予定！</p>
+
+      <h2 id="goods">🎁 非売品グッズコーナー</h2>
+      <p>ここでは、魔界府およびRe+M+Magic!が独自に制作・配布した非売品グッズをご紹介します。</p>
+
+      <div class="non-sale-item">
+        <h3>💳 Re+M+PASS ICカード（定期券・通常券）</h3>
+        <p>魔界府が配布する魔界交通対応ICカード。NFC機能付きでスマートフォンとの連携も可能。市販予定なし。</p>
+      </div>
+
+      <div class="non-sale-item">
+        <h3>🎖️ 魔界府交通局コラボ缶バッジ</h3>
+        <p>魔界府交通局との限定コラボデザイン。現在は関係者向けイベントなどでのみ配布予定の貴重な非売品(今後人気が出たら販売予定あり)。</p>
+      </div>
+
+    </main>
+
+  <footer>
+    © 魔界府・Re+M+Magic!広報課｜All rights reserved.
+  </footer>
+</body>
+</html>
