@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>魔界府式MSTI診断｜あなたの魔性タイプは？</title>
+  <style>
+    body {
+      background-color: #1a0e1a;
+      color: #f8eaff;
+      font-family: 'Helvetica Neue', sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1, h2 {
+      color: #ffccff;
+    }
+    .quiz-box {
+      max-width: 700px;
+      margin: 2rem auto;
+      background-color: #2a0a36;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+    .question {
+      margin-bottom: 1rem;
+    }
+    .progress {
+      height: 20px;
+      background: #3c134c;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background-color: #ffccff;
+      transition: width 0.3s ease-in-out;
+    }
+    button {
+      background-color: #ffccff;
+      color: #2a0a36;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #ffd1f7;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧬 魔界府式MSTI診断</h1>
+  <p>MSTI = Makai Succubus Type Indicator<br>あなたの中に眠る“魔性”のタイプを分析♡</p>
+
+  <div class="quiz-box" id="quiz">
+    <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+    <div class="question" id="question"></div>
+    <div id="answers"></div>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const quizData = [
+      { q: "相手にされて嬉しいのは？", a: ["甘やかされる", "頼られる"], type: ["S", "I"] },
+      { q: "あなたの魔力タイプは？", a: ["癒し", "挑発"], type: ["I", "S"] },
+      { q: "あなたの性格を一言で言うと？", a: ["ふわふわ系", "キリッと系"], type: ["A", "B"] },
+      { q: "恋愛でよくあるのは？", a: ["押しに弱い", "駆け引きしてしまう"], type: ["A", "B"] },
+      { q: "どっちが得意？", a: ["聞き役", "話し役"], type: ["P", "D"] },
+      { q: "自分を動物に例えると？", a: ["子猫", "小悪魔"], type: ["P", "D"] },
+      { q: "初対面の人と話すときは？", a: ["緊張しがち", "わりと平気"], type: ["I", "S"] },
+      { q: "好きなデートは？", a: ["静かなカフェ", "遊園地"], type: ["I", "S"] },
+      { q: "落ち込んだ時は？", a: ["一人で落ち着く", "誰かに聞いてもらう"], type: ["I", "S"] },
+      { q: "プレゼントを選ぶなら？", a: ["意味のあるもの", "インパクト重視！"], type: ["A", "B"] },
+      { q: "他人の恋愛相談を受けると？", a: ["一緒に考える", "ちょっと茶化しちゃう"], type: ["P", "D"] },
+      { q: "一番ほめられたい言葉は？", a: ["優しい", "かっこいい/かわいい"], type: ["A", "B"] },
+      { q: "どちらかというと…", a: ["受け身", "リードしたい"], type: ["P", "D"] },
+      { q: "人混みは？", a: ["疲れる…", "テンション上がる！"], type: ["I", "S"] },
+      { q: "LINEの返信頻度は？", a: ["じっくり考えて返す", "すぐ返す"], type: ["I", "S"] },
+      { q: "恋愛対象は？", a: ["じっくり距離を縮めたい", "一目惚れもアリ"], type: ["A", "B"] },
+      { q: "映画なら？", a: ["ヒューマンドラマ", "アクション/恋愛"], type: ["A", "B"] },
+      { q: "告白は？", a: ["されたい", "自分からする"], type: ["P", "D"] },
+      { q: "あなたの声は？", a: ["落ち着いてる", "高め＆ハキハキ"], type: ["I", "S"] },
+      { q: "好きな言葉は？", a: ["やさしさ", "ときめき"], type: ["A", "B"] },
+      { q: "怒ると？", a: ["黙る", "はっきり言う"], type: ["I", "S"] },
+      { q: "初デートで重視するのは？", a: ["雰囲気", "アクティブさ"], type: ["A", "B"] },
+      { q: "友達とは？", a: ["少数で深く", "多くて広く"], type: ["I", "S"] },
+      { q: "自分の恋は？", a: ["隠しがち", "バレてもいい"], type: ["I", "S"] },
+      { q: "あなたの“愛され力”は？", a: ["じわじわ型", "一撃必殺型"], type: ["P", "D"] }
+    ];
+
+    let index = 0;
+    let counts = { S: 0, I: 0, A: 0, B: 0, P: 0, D: 0 };
+
+    function showQuestion() {
+      const q = quizData[index];
+      document.getElementById("question").textContent = q.q;
+      const answersDiv = document.getElementById("answers");
+      const bar = document.getElementById("progress-bar");
+      const percent = Math.round((index / quizData.length) * 100);
+      bar.style.width = percent + "%";
+      answersDiv.innerHTML = "";
+
+      q.a.forEach((text, i) => {
+        const btn = document.createElement("button");
+        btn.textContent = text;
+        btn.onclick = () => {
+          counts[q.type[i]]++;
+          index++;
+          if (index < quizData.length) {
+            showQuestion();
+          } else {
+            showResult();
+          }
+        };
+        answersDiv.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      const resultType = (counts.S > counts.I ? "S" : "I") +
+                         (counts.A > counts.B ? "A" : "B") +
+                         (counts.P > counts.D ? "P" : "D");
+
+      let resultText = "";
+      switch (resultType) {
+        case "SAP": resultText = "【あまあま型サキュバス(インキュバス)】\n包容力バツグン。あなたがそばにいるだけで相手はとろけちゃう♡"; break;
+        case "SBP": resultText = "【ツンふわ型サキュバス(インキュバス)】\n本心は素直なのに、ちょっと不器用。でもそのギャップが最強♡"; break;
+        case "SAD": resultText = "【正統派サキュバス(インキュバス)】\n堂々とした魅力と甘さを兼ね備えた王道系。恋も人生もストレート！"; break;
+        case "SBD": resultText = "【挑発ツンデレ型サキュバス(インキュバス)】\nちょっと生意気。でも、たまに見せる笑顔で全部許せちゃう♡"; break;
+        case "IAP": resultText = "【天然ふわふわ型サキュバス(インキュバス)】\n思わず守りたくなる。天然発言で場を和ませる魔力♡"; break;
+        case "IBP": resultText = "【癒し静寂型サキュバス(インキュバス)】\n言葉少なめでも安心感は満点。隣にいるだけで落ち着く存在♡"; break;
+        case "IAD": resultText = "【小悪魔型サキュバス(インキュバス)】\n揺さぶり上手、からかい上手。でも本命にはめっぽう弱い♡"; break;
+        case "IBD": resultText = "【無言の色気型サキュバス(インキュバス)】\n視線だけで魔力を奪う危険な魅力。だまってても惹かれる♡"; break;
+        case "SPD": resultText = "【情熱リーダー型サキュバス(インキュバス)】\nどこまでもまっすぐ、感情全開で突き進むリーダータイプ♡"; break;
+        case "SDD": resultText = "【暴走カリスマ型サキュバス(インキュバス)】\n情熱×挑発＝魅了。感情も魔力もダダ漏れ♡"; break;
+        case "IAB": resultText = "【ロマンティック型サキュバス(インキュバス)】\n夢見がちで詩的。空想と愛で世界を包む♡"; break;
+        case "IBB": resultText = "【冷静観察型サキュバス(インキュバス)】\n一歩引いて全体を見守る知的な魅力の持ち主♡"; break;
+        default: resultText = "【ハイブリッド魔性型】\nサキュバスとインキュバスの魅力をあわせ持つ、魔界の至宝♡"; break;
+      }
+
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").innerHTML = `
+        <h2>診断結果</h2>
+        <p>${resultText.replace(/\n/g, '<br>')}</p>
+        <button onclick="navigator.clipboard.writeText('私のMSTI診断結果：${resultText.replace(/<br>/g, ' ').replace(/【|】/g, '')} #魔界府MSTI').then(()=>alert('結果をコピーしました！Xなどで貼り付けてね♡'))">
+          📣 結果をコピーしてシェア
+        </button>
+      `;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
