@@ -148,13 +148,12 @@
 
       document.getElementById("quiz").style.display = "none";
       document.getElementById("result").innerHTML = `
-        <h2>診断結果</h2>
-        <p>${resultText.replace(/\n/g, '<br>')}</p>
-        <button onclick="navigator.clipboard.writeText('私のMSTI診断結果：${resultText.replace(/<br>/g, ' ').replace(/【|】/g, '')} #魔界府MSTI').then(()=>alert('結果をコピーしました！Xなどで貼り付けてね♡'))">
-          📣 結果をコピーしてシェア
-        </button>
-      `;
-    }
+  <h2>診断結果</h2>
+  <p>${resultText.replace(/\n/g, '<br>')}</p>
+  <button onclick="navigator.clipboard.writeText(`私のMSTI診断結果は『${resultText.replace(/<br>/g, ' ').replace(/【|】/g, '')}』でした！\n▼診断はこちら▼\nhttps://makai-mbti.example.com #魔界府MSTI`).then(() => alert('診断結果をコピーしました！SNSでシェアしてみよう♡'))">
+    📣 結果をコピーしてシェア
+  </button>
+`;
 
     showQuestion();
   </script>
