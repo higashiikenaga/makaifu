@@ -73,6 +73,15 @@
       right: 5%;
       animation: slideInRight 1s ease 1.5s forwards;
     }
+    .logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 80%;
+      opacity: 0;
+      animation: fadeIn 1s ease 3s forwards;
+    }
     @keyframes slideInLeft {
       from { transform: translateX(-100%); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
@@ -96,6 +105,7 @@
   <div class="intro">
     <img src="ririsu.png" alt="リリス" class="character ririsu">
     <img src="rei.png" alt="玲" class="character rei">
+    <img src="logo.png" alt="ロゴ" class="logo">
   </div>
 
   <header>
