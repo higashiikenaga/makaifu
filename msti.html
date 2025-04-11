@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta property="og:title" content="魔界府式MSTI診断｜あなたの魔性タイプは？">
-<meta property="og:description" content="25問で判定！あなたはどのサキュバス(インキュバス)タイプ？診断してシェアしよう♡">
-<meta property="og:image" content="ririsu_1.png">
-<meta property="og:url" content="https://higashiikenaga.github.io/makaifu/msti.html">
-<meta name="twitter:card" content="summary_large_image">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>魔界府式MSTI診断｜あなたの魔性タイプは？</title>
+  <meta property="og:title" content="魔界府式MSTI診断｜あなたの魔性タイプは？">
+  <meta property="og:description" content="25問で判定！あなたはどのサキュバス(インキュバス)タイプ？診断してシェアしよう♡">
+  <meta property="og:image" content="ririsu_1.png">
+  <meta property="og:url" content="https://higashiikenaga.github.io/makaifu/msti.html">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
     body {
       background-color: #1a0e1a;
@@ -65,17 +65,15 @@
   <p>MSTI = Makai Succubus Type Indicator<br>あなたの中に眠る“魔性”のタイプを分析♡</p>
 
   <button id="start-btn" onclick="startQuiz()">診断を始める</button>
-<div class="quiz-box" id="quiz" style="display:none">
-  <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
-  <div class="question" id="question"></div>
-  <div id="answers"></div>
-</div>
+  <div class="quiz-box" id="quiz" style="display:none">
+    <div class="progress"><div class="progress-bar" id="progress-bar"></div></div>
+    <div class="question" id="question"></div>
+    <div id="answers"></div>
+  </div>
 
   <div id="result"></div>
 
   <script>
-
-    
     const quizData = [
       { q: "相手にされて嬉しいのは？", a: ["甘やかされる", "頼られる"], type: ["S", "I"] },
       { q: "あなたの魔力タイプは？", a: ["癒し", "挑発"], type: ["I", "S"] },
@@ -107,12 +105,12 @@
     let index = 0;
     let counts = { S: 0, I: 0, A: 0, B: 0, P: 0, D: 0 };
 
-    window.startQuiz = function() {
-  document.getElementById("start-btn").style.display = "none";
-  document.getElementById("quiz").style.display = "block";
-  showQuestion();
-}
-    
+    function startQuiz() {
+      document.getElementById("start-btn").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      showQuestion();
+    }
+
     function showQuestion() {
       const q = quizData[index];
       document.getElementById("question").textContent = q.q;
@@ -161,15 +159,19 @@
       }
 
       document.getElementById("quiz").style.display = "none";
+      const shareText =
+        '私のMSTI診断結果は『' +
+        resultText.replace(/<br>/g, ' ').replace(/【|】/g, '') +
+        '』でした！\n▼診断はこちら▼\nhttps://makai-mbti.example.com #魔界府MSTI';
+
       document.getElementById("result").innerHTML = `
-  <h2>診断結果</h2>
-  <p>${resultText.replace(/\n/g, '<br>')}</p>
-  <button onclick="const shareText = 
-    '私のMSTI診断結果は『' + `${resultText.replace(/<br>/g, ' ').replace(/【|】/g, '')}` + '』でした！\\n▼診断はこちら▼\\nhttps://makai-mbti.example.com #魔界府MSTI'; navigator.clipboard.writeText(shareText).then(() => { alert('診断結果をコピーしました！SNSでシェアしてみよう♡');});
-"">
-    📣 結果をコピーしてシェア
-  </button>
-`;
+        <h2>診断結果</h2>
+        <p>${resultText.replace(/\n/g, '<br>')}</p>
+        <button onclick="navigator.clipboard.writeText(\`${shareText}\`).then(() => alert('診断結果をコピーしました！SNSでシェアしてみよう♡'))">
+          📣 結果をコピーしてシェア
+        </button>
+      `;
+    }
   </script>
 </body>
 </html>
