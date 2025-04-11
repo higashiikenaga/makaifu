@@ -107,7 +107,7 @@
     let index = 0;
     let counts = { S: 0, I: 0, A: 0, B: 0, P: 0, D: 0 };
 
-    function startQuiz() {
+    window.startQuiz = function() {
   document.getElementById("start-btn").style.display = "none";
   document.getElementById("quiz").style.display = "block";
   showQuestion();
@@ -165,12 +165,7 @@
   <h2>診断結果</h2>
   <p>${resultText.replace(/\n/g, '<br>')}</p>
   <button onclick="const shareText = 
-    '私のMSTI診断結果は『' + 
-    `${resultText.replace(/<br>/g, ' ').replace(/【|】/g, '')}` + 
-    '』でした！\\n▼診断はこちら▼\\nhttps://makai-mbti.example.com #魔界府MSTI';
-  navigator.clipboard.writeText(shareText).then(() => {
-    alert('診断結果をコピーしました！SNSでシェアしてみよう♡');
-  });
+    '私のMSTI診断結果は『' + `${resultText.replace(/<br>/g, ' ').replace(/【|】/g, '')}` + '』でした！\\n▼診断はこちら▼\\nhttps://makai-mbti.example.com #魔界府MSTI'; navigator.clipboard.writeText(shareText).then(() => { alert('診断結果をコピーしました！SNSでシェアしてみよう♡');});
 "">
     📣 結果をコピーしてシェア
   </button>
