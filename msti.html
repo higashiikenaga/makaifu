@@ -164,7 +164,14 @@
       document.getElementById("result").innerHTML = `
   <h2>診断結果</h2>
   <p>${resultText.replace(/\n/g, '<br>')}</p>
-  <button onclick="navigator.clipboard.writeText(`私のMSTI診断結果は『${resultText.replace(/<br>/g, ' ').replace(/【|】/g, '')}』でした！\n▼診断はこちら▼\nhttps://makai-mbti.example.com #魔界府MSTI`).then(() => alert('診断結果をコピーしました！SNSでシェアしてみよう♡'))">
+  <button onclick="const shareText = 
+    '私のMSTI診断結果は『' + 
+    `${resultText.replace(/<br>/g, ' ').replace(/【|】/g, '')}` + 
+    '』でした！\\n▼診断はこちら▼\\nhttps://makai-mbti.example.com #魔界府MSTI';
+  navigator.clipboard.writeText(shareText).then(() => {
+    alert('診断結果をコピーしました！SNSでシェアしてみよう♡');
+  });
+"">
     📣 結果をコピーしてシェア
   </button>
 `;
