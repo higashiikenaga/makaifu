@@ -105,6 +105,31 @@
         max-height: 50vh;
       }
     }
+    .quiz-box {
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: #2a0a36;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+    .question {
+      margin-bottom: 1rem;
+    }
+    button {
+      background-color: #ffccff;
+      color: #2a0a36;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #ffd1f7;
+    }
   </style>
 </head>
   <script>
@@ -139,10 +164,89 @@
     <p>このサイトは、恋に不器用なサキュバス「リリス・ナイトメア」様と、<br>
     美少女男の娘「天川玲」くんによる魔界広報プロジェクトです。</p>
     <p>現在、癒しのASMR音声や、NFC連動カード「Re+M+PASS」などを展開予定！</p>
+
+    <h2>🧪 サキュバス・インキュバス適性診断</h1>
+  <p>あなたの中に眠る魔界的素質を、リリス様が判定♡</p>
+
+  <div class="quiz-box" id="quiz">
+    <div class="question" id="question"></div>
+    <div id="answers"></div>
+  </div>
+
+  <div id="result"></div>
   </main>
 
   <footer>
     © 魔界府・Re+M+Magic!広報課｜All rights reserved.
   </footer>
+  <script>
+    const quizData = [
+      {
+        q: "どちらかというと…",
+        a: ["甘やかしたい", "甘やかされたい"]
+      },
+      {
+        q: "人から褒められると",
+        a: ["照れるけど嬉しい", "もっと言ってほしい♡"]
+      },
+      {
+        q: "好きなシチュエーションは？",
+        a: ["静かな図書館", "夜のカフェで密談"]
+      },
+      {
+        q: "自分の魅力ポイントは？",
+        a: ["声とか仕草かな…", "全部？♡"]
+      },
+      {
+        q: "一番近い魔界職は…",
+        a: ["書記官", "広報官"]
+      }
+    ];
+
+    let current = 0;
+    let succubus = 0;
+    let incubus = 0;
+
+    function showQuestion() {
+      const q = quizData[current];
+      document.getElementById("question").textContent = q.q;
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+
+      q.a.forEach((ans, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = ans;
+        btn.onclick = () => {
+          if (index === 0) {
+            incubus++;
+          } else {
+            succubus++;
+          }
+          current++;
+          if (current < quizData.length) {
+            showQuestion();
+          } else {
+            showResult();
+          }
+        };
+        answersDiv.appendChild(btn);
+      });
+    }
+
+    function showResult() {
+      let result = "";
+      if (succubus > incubus) {
+        result = "あなたは…💗<strong>恋に不器用なサキュバス系！</strong><br>リリス様タイプで、甘くてちょっとポンコツな魅力の持ち主かも！？";
+      } else if (incubus > succubus) {
+        result = "あなたは…💙<strong>癒し系インキュバス属性！</strong><br>玲くんタイプで、包容力とほんのり可愛さを兼ね備えているわ♡";
+      } else {
+        result = "あなたは…✨<strong>ハイブリッド型魔界人！</strong><br>サキュバスとインキュバスの両方の魅力を持つ、最強の素質アリ！？";
+      }
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").innerHTML = result;
+    }
+
+    showQuestion();
+  </script>
 </body>
 </html>
