@@ -3,251 +3,289 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>魔界府公式ホームページ｜恋のキューピットはサキュバスさん！？＆Re+M+Magic!広報ページ</title>
+  <title>魔界府公式ホームページ</title>
+  <meta name="description" content="魔界府公式ホームページ。魔界府の施策・お知らせ・各種手続き・窓口案内を掲載しています。（※この府は架空です）">
   <style>
+    :root {
+      --main: #3a1450;
+      --main-dark: #240a35;
+      --accent: #b8860b;
+      --accent-light: #e8c766;
+      --bg: #f6f2f8;
+      --text: #231a2b;
+      --line: #d5c8de;
+    }
+    * { box-sizing: border-box; }
     body {
-      font-family: 'Helvetica Neue', sans-serif;
-      background-color: #1a0e1a;
-      color: #f8eaff;
       margin: 0;
-      padding: 0;
-      overflow-x: hidden;
+      font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
     }
-    body.ready .intro {
-      display: none;
-    }
-    body:not(.ready) .content {
-      display: none;
-    }
-    header {
-      background-color: #3c134c;
-      padding: 1.5rem;
-      text-align: center;
-      opacity: 0;
-      animation: fadeIn 1s ease 3s forwards;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    header p {
-      margin-top: 0.5rem;
-      font-style: italic;
-    }
-    nav {
-      background-color: #2a0a36;
+    a { color: #5a1d82; }
+    a:hover { color: #9b2fd0; }
+
+    /* 上部帯 */
+    .topbar {
+      background: var(--main-dark);
+      color: #d9c8e6;
+      font-size: 0.75rem;
+      padding: 0.3rem 1rem;
       display: flex;
+      justify-content: space-between;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem 0;
+      gap: 0.5rem;
     }
-    nav a {
-      color: #ffccff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    main {
-      padding: 2rem;
-      text-align: center;
-    }
-    footer {
-      background-color: #3c134c;
-      text-align: center;
+    .topbar a { color: #d9c8e6; margin-left: 1rem; }
+
+    /* ヘッダー */
+    header {
+      background: #fff;
+      border-bottom: 4px solid var(--accent);
       padding: 1rem;
-      font-size: 0.8rem;
     }
-    .intro {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
+    .header-inner {
+      max-width: 1000px;
+      margin: 0 auto;
       display: flex;
-      justify-content: center;
       align-items: center;
-      background-color: #0e0612;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
-    .character {
-      position: absolute;
-      max-height: 80vh;
-      opacity: 0;
+    .header-inner img { width: 72px; height: 72px; object-fit: contain; }
+    .site-title small { display: block; font-size: 0.75rem; letter-spacing: 0.3em; color: #6d5a7c; }
+    .site-title h1 { margin: 0; font-size: 1.9rem; color: var(--main); letter-spacing: 0.15em; line-height: 1.3; }
+    .search { margin-left: auto; display: flex; }
+    .search input { padding: 0.4rem 0.6rem; border: 1px solid var(--line); border-radius: 4px 0 0 4px; width: 180px; }
+    .search button { padding: 0.4rem 0.9rem; border: none; background: var(--main); color: #fff; border-radius: 0 4px 4px 0; cursor: pointer; }
+
+    /* グローバルナビ */
+    nav { background: var(--main); }
+    nav ul {
+      list-style: none; margin: 0 auto; padding: 0; max-width: 1000px;
+      display: flex; flex-wrap: wrap;
     }
-    .ririsu {
-      left: 5%;
-      animation: slideInLeft 1s ease 0.5s forwards;
+    nav li { flex: 1 1 auto; text-align: center; }
+    nav a {
+      display: block; padding: 0.8rem 0.6rem; color: #fff; text-decoration: none;
+      font-weight: bold; font-size: 0.9rem; border-right: 1px solid rgba(255,255,255,0.12);
     }
-    .rei {
-      right: 5%;
-      animation: slideInRight 1s ease 1.5s forwards;
+    nav a:hover { background: var(--main-dark); color: var(--accent-light); }
+
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+    /* 緊急情報 */
+    .alert {
+      background: #fff4d6; border: 2px solid var(--accent); border-radius: 4px;
+      padding: 0.7rem 1rem; margin-bottom: 1.5rem; font-size: 0.9rem;
     }
-   .logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 40%;
-      opacity: 0;
-      animation: fadeIn 1s ease 3s forwards;
+    .alert strong { background: #a11; color: #fff; padding: 0.1rem 0.5rem; border-radius: 3px; margin-right: 0.5rem; font-size: 0.8rem; }
+
+    /* メッセージ */
+    .hero {
+      background: linear-gradient(135deg, var(--main), #6b2a8f);
+      color: #fff; border-radius: 6px; padding: 1.5rem;
+      display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 2rem;
     }
-    @keyframes slideInLeft {
-      from { transform: translateX(-100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+    .hero img { width: 140px; height: 140px; object-fit: cover; object-position: top; border-radius: 50%; border: 3px solid var(--accent-light); background: #fff; }
+    .hero div { flex: 1 1 320px; }
+    .hero h2 { margin: 0 0 0.5rem; font-size: 1.3rem; color: var(--accent-light); }
+    .hero p { margin: 0.3rem 0; font-size: 0.95rem; }
+    .hero .sig { text-align: right; font-size: 0.85rem; opacity: 0.9; }
+
+    h2.section {
+      font-size: 1.25rem; color: var(--main); border-left: 8px solid var(--accent);
+      padding-left: 0.7rem; margin: 2.2rem 0 1rem;
     }
-    @keyframes slideInRight {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+    h2.section span { font-size: 0.75rem; color: #7d6a8c; margin-left: 0.7rem; letter-spacing: 0.1em; }
+
+    /* お知らせ */
+    .news { background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+    .news dl { margin: 0; }
+    .news .row { display: flex; gap: 1rem; padding: 0.7rem 1rem; border-bottom: 1px dashed var(--line); flex-wrap: wrap; align-items: baseline; }
+    .news .row:last-child { border-bottom: none; }
+    .news dt { font-size: 0.85rem; color: #6d5a7c; min-width: 6.5em; }
+    .tag { font-size: 0.7rem; padding: 0.05rem 0.6rem; border-radius: 10px; color: #fff; background: var(--main); min-width: 5.5em; text-align: center; }
+    .tag.imp { background: #a11; }
+    .tag.evt { background: #2a7a5a; }
+    .news dd { margin: 0; flex: 1 1 300px; }
+
+    /* 手続きカード */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .card {
+      background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--main);
+      border-radius: 4px; padding: 1rem; text-decoration: none; color: var(--text); display: block;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .card:hover { box-shadow: 0 4px 14px rgba(58,20,80,0.18); border-top-color: var(--accent); color: var(--text); }
+    .card .ic { font-size: 1.6rem; }
+    .card h3 { margin: 0.2rem 0; font-size: 1rem; color: var(--main); }
+    .card p { margin: 0; font-size: 0.82rem; color: #5b4c68; line-height: 1.6; }
+
+    /* 部局 */
+    table { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.9rem; }
+    th, td { border: 1px solid var(--line); padding: 0.6rem 0.8rem; text-align: left; vertical-align: top; }
+    th { background: #ece3f2; color: var(--main); white-space: nowrap; }
+
+    /* 統計 */
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; }
+    .stat { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 1rem; text-align: center; }
+    .stat b { display: block; font-size: 1.6rem; color: var(--main); }
+    .stat small { color: #6d5a7c; }
+
+    /* FAQ */
+    details { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 0.7rem 1rem; margin-bottom: 0.5rem; }
+    summary { cursor: pointer; font-weight: bold; color: var(--main); }
+    details p { margin: 0.6rem 0 0; font-size: 0.9rem; }
+
+    /* バナー */
+    .banners { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .banners a {
+      display: block; text-align: center; padding: 0.9rem; background: #fff; border: 1px solid var(--line);
+      border-radius: 4px; text-decoration: none; font-weight: bold; color: var(--main);
     }
-    @media (max-width: 768px) {
-      .character {
-        max-height: 50vh;
-      }
-    }
-    .quiz-box {
-      max-width: 600px;
-      margin: 2rem auto;
-      background-color: #2a0a36;
-      padding: 1.5rem;
-      border-radius: 10px;
-    }
-    .question {
-      margin-bottom: 1rem;
-    }
-    button {
-      background-color: #ffccff;
-      color: #2a0a36;
-      border: none;
-      padding: 0.5rem 1rem;
-      margin: 0.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    #result {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      color: #ffd1f7;
+    .banners a:hover { background: #f0e6f6; }
+
+    footer { background: var(--main-dark); color: #d9c8e6; font-size: 0.8rem; text-align: center; padding: 1.8rem 1rem; }
+    footer a { color: #e8c766; }
+    footer .addr { margin-bottom: 0.8rem; }
+    .disc { max-width: 1000px; margin: 1.5rem auto 0; font-size: 0.75rem; opacity: 0.75; }
+
+    @media (max-width: 640px) {
+      .search { margin-left: 0; width: 100%; }
+      .search input { flex: 1; }
+      .site-title h1 { font-size: 1.5rem; }
+      nav li { flex: 1 1 50%; }
     }
   </style>
 </head>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        document.body.classList.add('ready');
-      }, 5000); // 5秒後にアニメーション終了
-    });
-  </script>
 <body>
-  <div class="intro">
-    <img src="ririsu.png" alt="リリス" class="character ririsu">
-    <img src="rei.png" alt="玲" class="character rei">
-    <img src="logo.png" alt="ロゴ" class="logo">
+
+  <div class="topbar">
+    <span>魔界標準時 <span id="clock">--:--:--</span> 現在</span>
+    <span>
+      <a href="#">文字サイズ</a><a href="#">Language / 魔界語</a><a href="#">やさしい魔界語</a>
+    </span>
   </div>
 
   <header>
-    <h1>魔界府広報ポータルサイト</h1>
-    <p>～『恋のキューピットはサキュバスさん！？』＆『Re+M+Magic!』公式～</p>
+    <div class="header-inner">
+      <img src="logo.png" alt="魔界府章">
+      <div class="site-title">
+        <small>THE GOVERNMENT OF MAKAI</small>
+        <h1>魔界府</h1>
+      </div>
+      <form class="search" onsubmit="event.preventDefault(); alert('ただいま検索窓口は混雑しております。しばらくしてから再度お試しください。（魔界府情報システム課）');">
+        <input type="text" placeholder="サイト内検索" aria-label="サイト内検索">
+        <button type="submit">検索</button>
+      </form>
+    </div>
   </header>
 
   <nav>
-    <a href="https://kakuyomu.jp/works/16818622172681698163">📚 小説を読む</a>
-    <a href="#asmr">🎧 ASMRボイス</a>
-    <a href="https://higashiikenaga.github.io/metro_ic/index.html">💳 Re+M+PASS</a>
-    <a href="goods.html">🛍️ グッズ情報</a>
-    <a href="ririsu.html">🧠 リリス様とは？</a>
+    <ul>
+      <li><a href="#news">お知らせ</a></li>
+      <li><a href="#procedures">各種手続き</a></li>
+      <li><a href="#departments">組織・窓口</a></li>
+      <li><a href="#stats">魔界の統計</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+      <li><a href="goods.html">広報グッズ</a></li>
+    </ul>
   </nav>
 
-  <main>
-    <h2>ようこそ、魔界へ……♡</h2>
-    <p>このサイトは、恋に不器用なサキュバス「リリス・ナイトメア」様と、<br>
-    美少女男の娘「天川玲」くんによる魔界広報プロジェクトです。</p>
-    <p>現在、癒しのASMR音声や、NFC連動カード「Re+M+PASS」などを展開予定！</p>
+  <div class="wrap">
 
-    <h2>🧪 サキュバス・インキュバス適性診断</h1>
-  <p>あなたの中に眠る魔界的素質を、リリス様が判定♡</p>
+    <div class="alert">
+      <strong>重要</strong>
+      令和七年度 魔界府恋愛推進週間につき、サキュバス課の窓口は通常より混雑が予想されます。お時間に余裕をもってお越しください。
+    </div>
 
-  <a href="msti.html">魔界府式MSTI(インキュバス・サキュバスタイプ診断)</a>
-  <div class="quiz-box" id="quiz">
-    <div class="question" id="question"></div>
-    <div id="answers"></div>
+    <section class="hero">
+      <img src="ririsu.png" alt="魔界府広報官 リリス・ナイトメア">
+      <div>
+        <h2>府民の皆さまへ ― 広報官ごあいさつ</h2>
+        <p>魔界府は「すべての魔界民が、安心して恋をし、安心して夜更かしできる社会」を目指し、日々の行政サービスに取り組んでおります。</p>
+        <p>手続きでお困りの際は、お気軽に各窓口へご相談ください。（失敗しても大丈夫です。たぶん。）</p>
+        <p class="sig">魔界府 広報官　リリス・ナイトメア</p>
+      </div>
+    </section>
+
+    <h2 class="section" id="news">お知らせ<span>NEWS</span></h2>
+    <div class="news">
+      <dl>
+        <div class="row"><dt>令和7年11月15日</dt><span class="tag imp">重要</span><dd>【再周知】夜間のコウモリ便の混雑について、配達遅延が発生しています。</dd></div>
+        <div class="row"><dt>令和7年11月10日</dt><span class="tag evt">イベント</span><dd>第12回 魔界府主催「恋のキューピット研修会」の参加者を募集します。</dd></div>
+        <div class="row"><dt>令和7年11月 1日</dt><span class="tag">制度</span><dd>魔力納付書の様式を一部改正しました。旧様式は年内に限りご利用いただけます。</dd></div>
+        <div class="row"><dt>令和7年10月20日</dt><span class="tag">広報</span><dd><a href="msti.html">魔界府式MSTI（インキュバス・サキュバスタイプ診断）</a>の運用を開始しました。</dd></div>
+        <div class="row"><dt>令和7年10月 5日</dt><span class="tag">広報</span><dd>広報官 <a href="ririsu.html">リリス・ナイトメア</a> の紹介ページを公開しました。</dd></div>
+        <div class="row"><dt>令和7年 9月28日</dt><span class="tag">窓口</span><dd>サキュバス課 第二窓口の受付時間を午後10時～午前4時に変更しました。</dd></div>
+      </dl>
+    </div>
+
+    <h2 class="section" id="procedures">各種手続き<span>PROCEDURES</span></h2>
+    <div class="grid">
+      <a class="card" href="msti.html"><div class="ic">🧪</div><h3>適性診断（MSTI）</h3><p>あなたの魔界的素質を判定。就職・恋愛の参考にどうぞ。</p></a>
+      <a class="card" href="https://higashiikenaga.github.io/metro_ic/index.html"><div class="ic">💳</div><h3>Re+M+PASS</h3><p>魔界府公式ICカード。魔界メトロの乗車・各種窓口にご利用いただけます。</p></a>
+      <a class="card" href="https://kakuyomu.jp/works/16818622172681698163"><div class="ic">📚</div><h3>広報誌を読む</h3><p>『恋のキューピットはサキュバスさん！？』を掲載中。</p></a>
+      <a class="card" href="ririsu.html"><div class="ic">🧑‍💼</div><h3>職員紹介</h3><p>広報官 リリス・ナイトメアの職務内容・プロフィール。</p></a>
+      <a class="card" href="goods.html"><div class="ic">🛍️</div><h3>広報グッズ</h3><p>府公認グッズの頒布情報はこちらから。</p></a>
+      <a class="card" href="#faq"><div class="ic">📝</div><h3>魔力納付・各種届出</h3><p>納付方法、届出書類のご案内（よくある質問をご覧ください）。</p></a>
+    </div>
+
+    <h2 class="section" id="departments">組織・窓口のご案内<span>DEPARTMENTS</span></h2>
+    <table>
+      <tr><th>部局</th><th>主な業務</th><th>受付時間</th></tr>
+      <tr><td>広報課</td><td>府政情報の発信、広報官業務、公式グッズの管理</td><td>午後8時～午前2時</td></tr>
+      <tr><td>サキュバス課</td><td>恋愛相談、夢枕立ち許可、魅了行為の届出受理</td><td>午後10時～午前4時</td></tr>
+      <tr><td>インキュバス課</td><td>癒し支援、添い寝相談、男の娘登録に関する事務</td><td>午後10時～午前4時</td></tr>
+      <tr><td>魔力税務課</td><td>魔力納付書の受付、還付、延納相談</td><td>午後6時～午前0時</td></tr>
+      <tr><td>魔界交通局</td><td>魔界メトロ運行、Re+M+PASS の発行・再発行</td><td>24時間（駅窓口は除く）</td></tr>
+      <tr><td>情報システム課</td><td>本サイトの運用・保守（たまに落ちます）</td><td>随時（眠い時を除く）</td></tr>
+    </table>
+
+    <h2 class="section" id="stats">魔界のいま<span>STATISTICS</span></h2>
+    <div class="stats">
+      <div class="stat"><b>約 6,660 万</b><small>魔界人口（推計）</small></div>
+      <div class="stat"><b>87.4 %</b><small>夜型人口比率</small></div>
+      <div class="stat"><b>1,204 件</b><small>今月の恋愛相談受付数</small></div>
+      <div class="stat"><b>3 分 12 秒</b><small>窓口の平均待ち時間（体感）</small></div>
+    </div>
+
+    <h2 class="section" id="faq">よくある質問<span>Q&amp;A</span></h2>
+    <details><summary>Q. 魔界府はどこにありますか？</summary><p>A. 魔界府庁舎は、人間界から見て「ちょうど見えない場所」にございます。ご来庁の際は、深夜0時に鏡の前でお越しください。</p></details>
+    <details><summary>Q. 魔力納付書を紛失してしまいました。</summary><p>A. 魔力税務課にて再発行を承ります。ご本人確認のため、お名前と好きな食べ物をお申し付けください。</p></details>
+    <details><summary>Q. サキュバスとインキュバスの違いは何ですか？</summary><p>A. 詳しくは <a href="msti.html">魔界府式MSTI</a> でご確認いただけます。なお、職員の個別の適性は人事上の秘密です。</p></details>
+    <details><summary>Q. 広報官が恋に不器用だと聞きました。</summary><p>A. 職務の遂行には支障ございません。温かい目で見守っていただければ幸いです。</p></details>
+
+    <h2 class="section">関連リンク<span>LINKS</span></h2>
+    <div class="banners">
+      <a href="https://kakuyomu.jp/works/16818622172681698163">📚 魔界府広報誌（小説）</a>
+      <a href="https://higashiikenaga.github.io/metro_ic/index.html">💳 魔界メトロ／Re+M+PASS</a>
+      <a href="ririsu.html">🧑‍💼 広報官のご紹介</a>
+    </div>
+
   </div>
 
-  <div id="result"></div>
-  </main>
-
   <footer>
-    © 魔界府・Re+M+Magic!広報課｜All rights reserved.
+    <div class="addr">
+      <strong>魔界府</strong>　〒666-0666 魔界府魔界市夜之町 6-6-6<br>
+      電話：066-666-6666（受付：午後8時～午前2時）
+    </div>
+    <div><a href="#">サイトのご利用にあたって</a>　|　<a href="#">個人情報（魔力情報）の取扱い</a>　|　<a href="#">リンク・著作権</a>　|　<a href="#">アクセシビリティ</a></div>
+    <p>© 魔界府・Re+M+Magic!広報課｜All rights reserved.</p>
+    <p class="disc">※本サイトは創作作品『恋のキューピットはサキュバスさん！？』『Re+M+Magic!』に基づく架空の行政機関のホームページです。実在の団体・行政機関とは一切関係ありません。</p>
   </footer>
+
   <script>
-    const quizData = [
-      {
-        q: "どちらかというと…",
-        a: ["甘やかしたい", "甘やかされたい"]
-      },
-      {
-        q: "人から褒められると",
-        a: ["照れるけど嬉しい", "もっと言ってほしい♡"]
-      },
-      {
-        q: "好きなシチュエーションは？",
-        a: ["静かな図書館", "夜のカフェで密談"]
-      },
-      {
-        q: "自分の魅力ポイントは？",
-        a: ["声とか仕草かな…", "全部？♡"]
-      },
-      {
-        q: "一番近い魔界職は…",
-        a: ["書記官", "広報官"]
+    (function () {
+      var el = document.getElementById('clock');
+      function tick() {
+        var d = new Date();
+        var p = function (n) { return ('0' + n).slice(-2); };
+        el.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
       }
-    ];
-
-    let current = 0;
-    let succubus = 0;
-    let incubus = 0;
-
-    function showQuestion() {
-      const q = quizData[current];
-      document.getElementById("question").textContent = q.q;
-      const answersDiv = document.getElementById("answers");
-      answersDiv.innerHTML = "";
-
-      q.a.forEach((ans, index) => {
-        const btn = document.createElement("button");
-        btn.textContent = ans;
-        btn.onclick = () => {
-          if (index === 0) {
-            incubus++;
-          } else {
-            succubus++;
-          }
-          current++;
-          if (current < quizData.length) {
-            showQuestion();
-          } else {
-            showResult();
-          }
-        };
-        answersDiv.appendChild(btn);
-      });
-    }
-
-    function showResult() {
-      let result = "";
-      if (succubus > incubus) {
-        result = "あなたは…💗<strong>恋に不器用なサキュバス系！</strong><br>リリス様タイプで、甘くてちょっとポンコツな魅力の持ち主かも！？";
-      } else if (incubus > succubus) {
-        result = "あなたは…💙<strong>癒し系インキュバス属性！</strong><br>玲くんタイプで、包容力とほんのり可愛さを兼ね備えているわ♡";
-      } else {
-        result = "あなたは…✨<strong>ハイブリッド型魔界人！</strong><br>サキュバスとインキュバスの両方の魅力を持つ、最強の素質アリ！？";
-      }
-      document.getElementById("quiz").style.display = "none";
-      document.getElementById("result").innerHTML = result;
-    }
-
-    showQuestion();
+      tick(); setInterval(tick, 1000);
+    })();
   </script>
 </body>
 </html>
